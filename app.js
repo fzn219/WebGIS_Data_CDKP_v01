@@ -67,7 +67,7 @@ function onEachFeature(feature, layer) {
 
 // Memanggil file batas wilayah dari folder data/
 // Pastikan nama file Anda sudah diubah menjadi 'batas_wilayah.geojson'
-fetch('data/batas_wilayah.geojson') 
+fetch('data/Wilker_STBD_mangrove.geojson')
     .then(response => response.json())
     .then(data => {
         L.geoJSON(data, {
