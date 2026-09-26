@@ -1,0 +1,400 @@
+Log Konversi Shapefile ke GeoJSON
+Waktu mulai: 2026-02-03 03:48:45
+Input folder: D:/01_WORK/GIS/MANGROVE_MONITORING/00_MONITORING_MANGROVE/06_Result/Clip_Pesisir
+Output folder: D:/01_WORK/GIS/MANGROVE_MONITORING/00_MONITORING_MANGROVE/06_Result/Clip_Pesisir_GeoJson
+Total file: 381
+================================================================================
+
+✓ Aeng Baja Kenek – Bluto – Sumenep.shp -> Aeng Baja Kenek – Bluto – Sumenep.geojson
+✓ Aeng Dake – Bluto – Sumenep.shp -> Aeng Dake – Bluto – Sumenep.geojson
+✓ Aeng Panas – Pragaan – Sumenep.shp -> Aeng Panas – Pragaan – Sumenep.geojson
+✓ Aeng Taber – Tanjung Bumi – Bangkalan.shp -> Aeng Taber – Tanjung Bumi – Bangkalan.geojson
+✓ Aenganyar – Giliginting – Sumenep.shp -> Aenganyar – Giliginting – Sumenep.geojson
+✓ Aengsareh – Sampang – Sampang.shp -> Aengsareh – Sampang – Sampang.geojson
+✓ Agel – Jangkar – Situbondo.shp -> Agel – Jangkar – Situbondo.geojson
+✓ Alas Malang – Ra_as – Sumenep.shp -> Alas Malang – Ra_as – Sumenep.geojson
+✓ Alasbuluh – Wongsorejo – Banyuwangi.shp -> Alasbuluh – Wongsorejo – Banyuwangi.geojson
+✓ Alasrejo – Wongsorejo – Banyuwangi.shp -> Alasrejo – Wongsorejo – Banyuwangi.geojson
+✓ Ambat – Tlanakan – Pamekasan.shp -> Ambat – Tlanakan – Pamekasan.geojson
+✓ Andulang – Gapura – Sumenep.shp -> Andulang – Gapura – Sumenep.geojson
+✓ Angkatan – Arjasa – Sumenep.shp -> Angkatan – Arjasa – Sumenep.geojson
+✓ Angon-angon – Arjasa – Sumenep.shp -> Angon-angon – Arjasa – Sumenep.geojson
+✓ Apa an – Pangarengan – Sampang.shp -> Apa an – Pangarengan – Sampang.geojson
+✓ Arjasa – Arjasa – Situbondo.shp -> Arjasa – Arjasa – Situbondo.geojson
+✓ Asembagus – Kraksaan – Probolinggo.shp -> Asembagus – Kraksaan – Probolinggo.geojson
+✓ Asembakor – Kraksaan – Probolinggo.shp -> Asembakor – Kraksaan – Probolinggo.geojson
+✓ Asemnonggal – Jrengik – Sampang.shp -> Asemnonggal – Jrengik – Sampang.geojson
+✓ Asemraja – Jrengik – Sampang.shp -> Asemraja – Jrengik – Sampang.geojson
+✓ Baban – Gapura – Sumenep.shp -> Baban – Gapura – Sumenep.geojson
+✓ Baddurih – Pademawu – Pamekasan.shp -> Baddurih – Pademawu – Pamekasan.geojson
+✓ Badean – Blimbingsari – Banyuwangi.shp -> Badean – Blimbingsari – Banyuwangi.geojson
+✓ Bades – Pasirian – Lumajang.shp -> Bades – Pasirian – Lumajang.geojson
+✓ Balung – Arosbaya – Bangkalan.shp -> Balung – Arosbaya – Bangkalan.geojson
+✓ Banbaru – Giliginting – Sumenep.shp -> Banbaru – Giliginting – Sumenep.geojson
+✓ Bancaran – Bangkalan – Bangkalan.shp -> Bancaran – Bangkalan – Bangkalan.geojson
+✓ Bangsah – Sreseh – Sampang.shp -> Bangsah – Sreseh – Sampang.geojson
+✓ Banjar Timur – Gapura – Sumenep.shp -> Banjar Timur – Gapura – Sumenep.geojson
+✓ Banjarsari – Sumberasih – Probolinggo.shp -> Banjarsari – Sumberasih – Probolinggo.geojson
+✓ Banmaleng – Giliginting – Sumenep.shp -> Banmaleng – Giliginting – Sumenep.geojson
+✓ Banyuajuh – Kamal – Bangkalan.shp -> Banyuajuh – Kamal – Bangkalan.geojson
+✓ Banyuanyar – Sampang – Sampang.shp -> Banyuanyar – Sampang – Sampang.geojson
+✓ Banyuates – Banyuates – Sampang.shp -> Banyuates – Banyuates – Sampang.geojson
+✓ Banyuglugur – Banyuglugur – Situbondo.shp -> Banyuglugur – Banyuglugur – Situbondo.geojson
+✓ Banyusangka – Tanjung Bumi – Bangkalan.shp -> Banyusangka – Tanjung Bumi – Bangkalan.geojson
+✓ Banyusokah – Ketapang – Sampang.shp -> Banyusokah – Ketapang – Sampang.geojson
+✓ Batah Barat – Kwanyar – Bangkalan.shp -> Batah Barat – Kwanyar – Bangkalan.geojson
+✓ Batah Timur – Kwanyar – Bangkalan.shp -> Batah Timur – Kwanyar – Bangkalan.geojson
+✓ Batioh – Banyuates – Sampang.shp -> Batioh – Banyuates – Sampang.geojson
+✓ Bator – Klampis – Bangkalan.shp -> Bator – Klampis – Bangkalan.geojson
+✓ Batudinding – Gapura – Sumenep.shp -> Batudinding – Gapura – Sumenep.geojson
+✓ Batuputih – Kangayan – Sumenep.shp -> Batuputih – Kangayan – Sumenep.geojson
+✓ Bayeman – Tongas – Probolinggo.shp -> Bayeman – Tongas – Probolinggo.geojson
+✓ Bengkak – Wongsorejo – Banyuwangi.shp -> Bengkak – Wongsorejo – Banyuwangi.geojson
+✓ Besuki – Besuki – Situbondo.shp -> Besuki – Besuki – Situbondo.geojson
+✓ Bhinor – Paiton – Probolinggo.shp -> Bhinor – Paiton – Probolinggo.geojson
+✓ Bilaporah – Socah – Bangkalan.shp -> Bilaporah – Socah – Bangkalan.geojson
+✓ Bilis-bilis – Arjasa – Sumenep.shp -> Bilis-bilis – Arjasa – Sumenep.geojson
+✓ Bira Tengah – Sokobanah – Sampang.shp -> Bira Tengah – Sokobanah – Sampang.geojson
+✓ Blega – Blega – Bangkalan.shp -> Blega – Blega – Bangkalan.geojson
+✓ Bletok – Bungatan – Situbondo.shp -> Bletok – Bungatan – Situbondo.geojson
+✓ Blimbingsari – Blimbingsari – Banyuwangi.shp -> Blimbingsari – Blimbingsari – Banyuwangi.geojson
+✓ Bomo – Blimbingsari – Banyuwangi.shp -> Bomo – Blimbingsari – Banyuwangi.geojson
+✓ Braji – Gapura – Sumenep.shp -> Braji – Gapura – Sumenep.geojson
+✓ Brakas – Ra_as – Sumenep.shp -> Brakas – Ra_as – Sumenep.geojson
+✓ Branta Pesisir – Tlanakan – Pamekasan.shp -> Branta Pesisir – Tlanakan – Pamekasan.geojson
+✓ Branta Tinggi – Tlanakan – Pamekasan.shp -> Branta Tinggi – Tlanakan – Pamekasan.geojson
+✓ Bringinnonggal – Torjun – Sampang.shp -> Bringinnonggal – Torjun – Sampang.geojson
+✓ Bringsang – Giliginting – Sumenep.shp -> Bringsang – Giliginting – Sumenep.geojson
+✓ Buddi – Arjasa – Sumenep.shp -> Buddi – Arjasa – Sumenep.geojson
+✓ Buduan – Suboh – Situbondo.shp -> Buduan – Suboh – Situbondo.geojson
+✓ Bulang – Gending – Probolinggo.shp -> Bulang – Gending – Probolinggo.geojson
+✓ Bulay – Galis – Pamekasan.shp -> Bulay – Galis – Pamekasan.geojson
+✓ Buluagung – Siliragung – Banyuwangi.shp -> Buluagung – Siliragung – Banyuwangi.geojson
+✓ Buluh – Socah – Bangkalan.shp -> Buluh – Socah – Bangkalan.geojson
+✓ Bulukagung – Klampis – Bangkalan.shp -> Bulukagung – Klampis – Bangkalan.geojson
+✓ Bulurejo – Tempursari – Lumajang.shp -> Bulurejo – Tempursari – Lumajang.geojson
+✓ Bumi Anyar – Tanjung Bumi – Bangkalan.shp -> Bumi Anyar – Tanjung Bumi – Bangkalan.geojson
+✓ Bunder – Pademawu – Pamekasan.shp -> Bunder – Pademawu – Pamekasan.geojson
+✓ Bungatan – Bungatan – Situbondo.shp -> Bungatan – Bungatan – Situbondo.geojson
+✓ Cangkramaan – Kangayan – Sumenep.shp -> Cangkramaan – Kangayan – Sumenep.geojson
+✓ Curahdringu – Tongas – Probolinggo.shp -> Curahdringu – Tongas – Probolinggo.geojson
+✓ Curahnongko – Tempurejo – Jember.shp -> Curahnongko – Tempurejo – Jember.geojson
+✓ Curahsawo – Gending – Probolinggo.shp -> Curahsawo – Gending – Probolinggo.geojson
+✓ Curahtulis – Tongas – Probolinggo.shp -> Curahtulis – Tongas – Probolinggo.geojson
+✓ Daandung – Kangayan – Sumenep.shp -> Daandung – Kangayan – Sumenep.geojson
+✓ Dakiring – Socah – Bangkalan.shp -> Dakiring – Socah – Bangkalan.geojson
+✓ Dasok – Pademawu – Pamekasan.shp -> Dasok – Pademawu – Pamekasan.geojson
+✓ Demung – Besuki – Situbondo.shp -> Demung – Besuki – Situbondo.geojson
+✓ Dharma Camplong – Camplong – Sampang.shp -> Dharma Camplong – Camplong – Sampang.geojson
+✓ Dharma Tanjung – Camplong – Sampang.shp -> Dharma Tanjung – Camplong – Sampang.geojson
+✓ Disanah – Sreseh – Sampang.shp -> Disanah – Sreseh – Sampang.geojson
+✓ Dringu – Dringu – Probolinggo.shp -> Dringu – Dringu – Probolinggo.geojson
+✓ Duko – Arjasa – Sumenep.shp -> Duko – Arjasa – Sumenep.geojson
+✓ Dungun – Tongas – Probolinggo.shp -> Dungun – Tongas – Probolinggo.geojson
+✓ Duwet – Panarukan – Situbondo.shp -> Duwet – Panarukan – Situbondo.geojson
+✓ Gadingan – Jangkar – Situbondo.shp -> Gadingan – Jangkar – Situbondo.geojson
+✓ Galis – Galis – Pamekasan.shp -> Galis – Galis – Pamekasan.geojson
+✓ Galis – Giliginting – Sumenep.shp -> Galis – Giliginting – Sumenep.geojson
+✓ Gapura Barat – Gapura – Sumenep.shp -> Gapura Barat – Gapura – Sumenep.geojson
+✓ Gapurana – Talango – Sumenep.shp -> Gapurana – Talango – Sumenep.geojson
+✓ Gayam – Gayam – Sumenep.shp -> Gayam – Gayam – Sumenep.geojson
+✓ Gebang – Bangkalan – Bangkalan.shp -> Gebang – Bangkalan – Bangkalan.geojson
+✓ Gedugan – Giliginting – Sumenep.shp -> Gedugan – Giliginting – Sumenep.geojson
+✓ Gejugan – Pejarakan – Probolinggo.shp -> Gejugan – Pejarakan – Probolinggo.geojson
+✓ Gelaman – Arjasa – Sumenep.shp -> Gelaman – Arjasa – Sumenep.geojson
+✓ Gelung – Panarukan – Situbondo.shp -> Gelung – Panarukan – Situbondo.geojson
+✓ Gending – Gending – Probolinggo.shp -> Gending – Gending – Probolinggo.geojson
+✓ Gersik Putih – Gapura – Sumenep.shp -> Gersik Putih – Gapura – Sumenep.geojson
+✓ Gili Anyar – Kamal – Bangkalan.shp -> Gili Anyar – Kamal – Bangkalan.geojson
+✓ Gili Barat – Kamal – Bangkalan.shp -> Gili Barat – Kamal – Bangkalan.geojson
+✓ Gondoruso – Pasirian – Lumajang.shp -> Gondoruso – Pasirian – Lumajang.geojson
+✓ Grajagan – Purwoharjo – Banyuwangi.shp -> Grajagan – Purwoharjo – Banyuwangi.geojson
+✓ Gulbung – Pangarengan – Sampang.shp -> Gulbung – Pangarengan – Sampang.geojson
+✓ Guluk Manjung – Bluto – Sumenep.shp -> Guluk Manjung – Bluto – Sumenep.geojson
+✓ Guwa-Guwa – Ra_as – Sumenep.shp -> Guwa-Guwa – Ra_as – Sumenep.geojson
+✓ Jabungsisir – Paiton – Probolinggo.shp -> Jabungsisir – Paiton – Probolinggo.geojson
+✓ Jaddung – Pragaan – Sumenep.shp -> Jaddung – Pragaan – Sumenep.geojson
+✓ Jangkar – Jangkar – Situbondo.shp -> Jangkar – Jangkar – Situbondo.geojson
+✓ Jangkong – Batang Batang – Sumenep.shp -> Jangkong – Batang Batang – Sumenep.geojson
+✓ Jarin – Pademawu – Pamekasan.shp -> Jarin – Pademawu – Pamekasan.geojson
+✓ Jatra Timur – Banyuates – Sampang.shp -> Jatra Timur – Banyuates – Sampang.geojson
+✓ Jukong-jukong – Kangayan – Sumenep.shp -> Jukong-jukong – Kangayan – Sumenep.geojson
+✓ Juluk – Saronggi – Sumenep.shp -> Juluk – Saronggi – Sumenep.geojson
+✓ Junganyar – Socah – Bangkalan.shp -> Junganyar – Socah – Bangkalan.geojson
+✓ Jungkarang – Jrengik – Sampang.shp -> Jungkarang – Jrengik – Sampang.geojson
+✓ Jungkat – Ra_as – Sumenep.shp -> Jungkat – Ra_as – Sumenep.geojson
+✓ Junok – Sreseh – Sampang.shp -> Junok – Sreseh – Sampang.geojson
+✓ Juruan Daya – Batuputih – Sumenep.shp -> Juruan Daya – Batuputih – Sumenep.geojson
+✓ Kaduara Barat – Larangan – Pamekasan.shp -> Kaduara Barat – Larangan – Pamekasan.geojson
+✓ Kaduara Timur – Pragaan – Sumenep.shp -> Kaduara Timur – Pragaan – Sumenep.geojson
+✓ Kalangan Prao – Jrengik – Sampang.shp -> Kalangan Prao – Jrengik – Sampang.geojson
+✓ Kalianget Barat – Kalianget – Sumenep.shp -> Kalianget Barat – Kalianget – Sumenep.geojson
+✓ Kalianget Timur – Kalianget – Sumenep.shp -> Kalianget Timur – Kalianget – Sumenep.geojson
+✓ Kalianget – Banyuglugur – Situbondo.shp -> Kalianget – Banyuglugur – Situbondo.geojson
+✓ Kalibuntu – Kraksaan – Probolinggo.shp -> Kalibuntu – Kraksaan – Probolinggo.geojson
+✓ Kalikatak – Arjasa – Sumenep.shp -> Kalikatak – Arjasa – Sumenep.geojson
+✓ Kalimook – Kalianget – Sumenep.shp -> Kalimook – Kalianget – Sumenep.geojson
+✓ Kalipait – Tegaldlimo – Banyuwangi.shp -> Kalipait – Tegaldlimo – Banyuwangi.geojson
+✓ Kalirejo – Kabat – Banyuwangi.shp -> Kalirejo – Kabat – Banyuwangi.geojson
+✓ Kalisalam – Dringu – Probolinggo.shp -> Kalisalam – Dringu – Probolinggo.geojson
+✓ Kalisangka – Arjasa – Sumenep.shp -> Kalisangka – Arjasa – Sumenep.geojson
+✓ Kalowang – Gayam – Sumenep.shp -> Kalowang – Gayam – Sumenep.geojson
+✓ Kamal – Kamal – Bangkalan.shp -> Kamal – Kamal – Bangkalan.geojson
+✓ Kampungmandar – Banyuwangi – Banyuwangi.shp -> Kampungmandar – Banyuwangi – Banyuwangi.geojson
+✓ Kandangan – Pesanggaran – Banyuwangi.shp -> Kandangan – Pesanggaran – Banyuwangi.geojson
+✓ Kangayan – Kangayan – Sumenep.shp -> Kangayan – Kangayan – Sumenep.geojson
+✓ Kapedi – Bluto – Sumenep.shp -> Kapedi – Bluto – Sumenep.geojson
+✓ Karang Anyar – Kwanyar – Bangkalan.shp -> Karang Anyar – Kwanyar – Bangkalan.geojson
+✓ Karang Anyar – Modung – Bangkalan.shp -> Karang Anyar – Modung – Bangkalan.geojson
+✓ Karang Dalam – Sampang – Sampang.shp -> Karang Dalam – Sampang – Sampang.geojson
+✓ Karang Gayam – Blega – Bangkalan.shp -> Karang Gayam – Blega – Bangkalan.geojson
+✓ Karang Panasan – Blega – Bangkalan.shp -> Karang Panasan – Blega – Bangkalan.geojson
+✓ Karanganyar – Kalianget – Sumenep.shp -> Karanganyar – Kalianget – Sumenep.geojson
+✓ Karanganyar – Paiton – Probolinggo.shp -> Karanganyar – Paiton – Probolinggo.geojson
+✓ Karangbudi – Gapura – Sumenep.shp -> Karangbudi – Gapura – Sumenep.geojson
+✓ Karanggeger – Pejarakan – Probolinggo.shp -> Karanggeger – Pejarakan – Probolinggo.geojson
+✓ Karangnangka – Ra_as – Sumenep.shp -> Karangnangka – Ra_as – Sumenep.geojson
+✓ Karangrejo – Banyuwangi – Banyuwangi.shp -> Karangrejo – Banyuwangi – Banyuwangi.geojson
+✓ Karduluk – Pragaan – Sumenep.shp -> Karduluk – Pragaan – Sumenep.geojson
+✓ Kebonagung – Kraksaan – Probolinggo.shp -> Kebonagung – Kraksaan – Probolinggo.geojson
+✓ Kebundadap Barat – Saronggi – Sumenep.shp -> Kebundadap Barat – Saronggi – Sumenep.geojson
+✓ Kebundadap Timur – Saronggi – Sumenep.shp -> Kebundadap Timur – Saronggi – Sumenep.geojson
+✓ Kedungasri – Tegaldlimo – Banyuwangi.shp -> Kedungasri – Tegaldlimo – Banyuwangi.geojson
+✓ Kedungringin – Muncar – Banyuwangi.shp -> Kedungringin – Muncar – Banyuwangi.geojson
+✓ Keleyan – Socah – Bangkalan.shp -> Keleyan – Socah – Bangkalan.geojson
+✓ Kemayoran – Bangkalan – Bangkalan.shp -> Kemayoran – Bangkalan – Bangkalan.geojson
+✓ Kendalrejo – Tegaldlimo – Banyuwangi.shp -> Kendalrejo – Tegaldlimo – Banyuwangi.geojson
+✓ Kepanjen – Gumukmas – Jember.shp -> Kepanjen – Gumukmas – Jember.geojson
+✓ Kepatihan – Banyuwangi – Banyuwangi.shp -> Kepatihan – Banyuwangi – Banyuwangi.geojson
+✓ Kertasada – Kalianget – Sumenep.shp -> Kertasada – Kalianget – Sumenep.geojson
+✓ Kertosari – Banyuwangi – Banyuwangi.shp -> Kertosari – Banyuwangi – Banyuwangi.geojson
+✓ Ketah – Suboh – Situbondo.shp -> Ketah – Suboh – Situbondo.geojson
+✓ Ketapang – Kademangan – Kota Probolinggo.shp -> Ketapang – Kademangan – Kota Probolinggo.geojson
+✓ Ketupat – Ra_as – Sumenep.shp -> Ketupat – Ra_as – Sumenep.geojson
+✓ Kilensari – Panarukan – Situbondo.shp -> Kilensari – Panarukan – Situbondo.geojson
+✓ Klampis Barat – Klampis – Bangkalan.shp -> Klampis Barat – Klampis – Bangkalan.geojson
+✓ Klampis Timur – Klampis – Bangkalan.shp -> Klampis Timur – Klampis – Bangkalan.geojson
+✓ Klaseman – Gending – Probolinggo.shp -> Klaseman – Gending – Probolinggo.geojson
+✓ Klatakan – Kendit – Situbondo.shp -> Klatakan – Kendit – Situbondo.geojson
+✓ Klobur – Sreseh – Sampang.shp -> Klobur – Sreseh – Sampang.geojson
+✓ Kolo-kolo – Arjasa – Sumenep.shp -> Kolo-kolo – Arjasa – Sumenep.geojson
+✓ Kombang – Talango – Sumenep.shp -> Kombang – Talango – Sumenep.geojson
+✓ Konang – Galis – Pamekasan.shp -> Konang – Galis – Pamekasan.geojson
+✓ Ko_ol – Klampis – Bangkalan.shp -> Ko_ol – Klampis – Bangkalan.geojson
+✓ Kramat – Bangkalan – Bangkalan.shp -> Kramat – Bangkalan – Bangkalan.geojson
+✓ Kramian – Masalembu – Sumenep.shp -> Kramian – Masalembu – Sumenep.geojson
+✓ Krampon – Torjun – Sampang.shp -> Krampon – Torjun – Sampang.geojson
+✓ Kropoh – Ra_as – Sumenep.shp -> Kropoh – Ra_as – Sumenep.geojson
+✓ Kumbangsari – Jangkar – Situbondo.shp -> Kumbangsari – Jangkar – Situbondo.geojson
+✓ Kumendung – Muncar – Banyuwangi.shp -> Kumendung – Muncar – Banyuwangi.geojson
+✓ Labang – Sreseh – Sampang.shp -> Labang – Sreseh – Sampang.geojson
+✓ Labuhan – Sepulu – Bangkalan.shp -> Labuhan – Sepulu – Bangkalan.geojson
+✓ Labuhan – Sreseh – Sampang.shp -> Labuhan – Sreseh – Sampang.geojson
+✓ Lajing – Arosbaya – Bangkalan.shp -> Lajing – Arosbaya – Bangkalan.geojson
+✓ Lamongan – Arjasa – Situbondo.shp -> Lamongan – Arjasa – Situbondo.geojson
+✓ Landangan – Kapongan – Situbondo.shp -> Landangan – Kapongan – Situbondo.geojson
+✓ Langpanggang – Modung – Bangkalan.shp -> Langpanggang – Modung – Bangkalan.geojson
+✓ Larangan Glintong – Klampis – Bangkalan.shp -> Larangan Glintong – Klampis – Bangkalan.geojson
+✓ Larangan Sorjan – Klampis – Bangkalan.shp -> Larangan Sorjan – Klampis – Bangkalan.geojson
+✓ Larangan Tokol – Tlanakan – Pamekasan.shp -> Larangan Tokol – Tlanakan – Pamekasan.geojson
+✓ Lateng – Banyuwangi – Banyuwangi.shp -> Lateng – Banyuwangi – Banyuwangi.geojson
+✓ Lemah Kembar – Sumberasih – Probolinggo.shp -> Lemah Kembar – Sumberasih – Probolinggo.geojson
+✓ Lembung Paseser – Sepulu – Bangkalan.shp -> Lembung Paseser – Sepulu – Bangkalan.geojson
+✓ Lembung – Galis – Pamekasan.shp -> Lembung – Galis – Pamekasan.geojson
+✓ Lobuk – Bluto – Sumenep.shp -> Lobuk – Bluto – Sumenep.geojson
+✓ Lomaer – Blega – Bangkalan.shp -> Lomaer – Blega – Bangkalan.geojson
+✓ Lombang – Giliginting – Sumenep.shp -> Lombang – Giliginting – Sumenep.geojson
+✓ Longos – Gapura – Sumenep.shp -> Longos – Gapura – Sumenep.geojson
+✓ Macajah – Tanjung Bumi – Bangkalan.shp -> Macajah – Tanjung Bumi – Bangkalan.geojson
+✓ Majangan – Jrengik – Sampang.shp -> Majangan – Jrengik – Sampang.geojson
+✓ Majungan – Pademawu – Pamekasan.shp -> Majungan – Pademawu – Pamekasan.geojson
+✓ Maneron – Sepulu – Bangkalan.shp -> Maneron – Sepulu – Bangkalan.geojson
+✓ Mangunharjo – Mayangan – Kota Probolinggo.shp -> Mangunharjo – Mayangan – Kota Probolinggo.geojson
+✓ Marengan Laok – Kalianget – Sumenep.shp -> Marengan Laok – Kalianget – Sumenep.geojson
+✓ Margantoko – Jrengik – Sampang.shp -> Margantoko – Jrengik – Sampang.geojson
+✓ Marparan – Sreseh – Sampang.shp -> Marparan – Sreseh – Sampang.geojson
+✓ Martajasah – Bangkalan – Bangkalan.shp -> Martajasah – Bangkalan – Bangkalan.geojson
+✓ Masakambing – Masalembu – Sumenep.shp -> Masakambing – Masalembu – Sumenep.geojson
+✓ Masalima – Masalembu – Sumenep.shp -> Masalima – Masalembu – Sumenep.geojson
+✓ Masaran – Banyuates – Sampang.shp -> Masaran – Banyuates – Sampang.geojson
+✓ Mayangan – Gumukmas – Jember.shp -> Mayangan – Gumukmas – Jember.geojson
+✓ Mayangan – Mayangan – Kota Probolinggo.shp -> Mayangan – Mayangan – Kota Probolinggo.geojson
+✓ Mlajah – Bangkalan – Bangkalan.shp -> Mlajah – Bangkalan – Bangkalan.geojson
+✓ Mlandingan Kulon – Mlandingan – Situbondo.shp -> Mlandingan Kulon – Mlandingan – Situbondo.geojson
+✓ Mlandingan Wetan – Bungatan – Situbondo.shp -> Mlandingan Wetan – Bungatan – Situbondo.geojson
+✓ Moarah – Klampis – Bangkalan.shp -> Moarah – Klampis – Bangkalan.geojson
+✓ Modung – Modung – Bangkalan.shp -> Modung – Modung – Bangkalan.geojson
+✓ Mojomulyo – Puger – Jember.shp -> Mojomulyo – Puger – Jember.geojson
+✓ Montok – Larangan – Pamekasan.shp -> Montok – Larangan – Pamekasan.geojson
+✓ Mrandung – Klampis – Bangkalan.shp -> Mrandung – Klampis – Bangkalan.geojson
+✓ Nambakor – Saronggi – Sumenep.shp -> Nambakor – Saronggi – Sumenep.geojson
+✓ Nepa – Banyuates – Sampang.shp -> Nepa – Banyuates – Sampang.geojson
+✓ Nonggunong – Nonggunong – Sumenep.shp -> Nonggunong – Nonggunong – Sumenep.geojson
+✓ Noreh – Sreseh – Sampang.shp -> Noreh – Sreseh – Sampang.geojson
+✗ P. Mandangin – Sampang – Sampang.shp -> ERROR: Failed to execute. Parameters are not valid.
+ERROR 000732: Input Features: Dataset D:/01_WORK/GIS/MANGROVE_MONITORING/00_MONITORING_MANGROVE/06_Result/Clip_Pesisir\P. Mandangin – Sampang – Sampang.shp does not exist or is not supported
+Failed to execute (FeaturesToJSON).
+
+✓ Pabean – Arjasa – Sumenep.shp -> Pabean – Arjasa – Sumenep.geojson
+✓ Pabean – Dringu – Probolinggo.shp -> Pabean – Dringu – Probolinggo.geojson
+✓ Pacangga an – Pangarengan – Sampang.shp -> Pacangga an – Pangarengan – Sampang.geojson
+✓ Padelegan – Pademawu – Pamekasan.shp -> Padelegan – Pademawu – Pamekasan.geojson
+✓ Pademawu Barat – Pademawu – Pamekasan.shp -> Pademawu Barat – Pademawu – Pamekasan.geojson
+✓ Pademawu Timur – Pademawu – Pamekasan.shp -> Pademawu Timur – Pademawu – Pamekasan.geojson
+✓ Padike – Talango – Sumenep.shp -> Padike – Talango – Sumenep.geojson
+✓ Pagagan – Pademawu – Pamekasan.shp -> Pagagan – Pademawu – Pamekasan.geojson
+✓ Pagar Batu – Saronggi – Sumenep.shp -> Pagar Batu – Saronggi – Sumenep.geojson
+✓ Pagerungan Besar – Sapeken – Sumenep.shp -> Pagerungan Besar – Sapeken – Sumenep.geojson
+✓ Pagerungan Kecil – Sapeken – Sumenep.shp -> Pagerungan Kecil – Sapeken – Sumenep.geojson
+✓ Pajanangger – Arjasa – Sumenep.shp -> Pajanangger – Arjasa – Sumenep.geojson
+✓ Pajurangan – Gending – Probolinggo.shp -> Pajurangan – Gending – Probolinggo.geojson
+✓ Pakamban Laok – Pragaan – Sumenep.shp -> Pakamban Laok – Pragaan – Sumenep.geojson
+✓ Pakandangan Barat – Bluto – Sumenep.shp -> Pakandangan Barat – Bluto – Sumenep.geojson
+✓ Pakandangan Sangra – Bluto – Sumenep.shp -> Pakandangan Sangra – Bluto – Sumenep.geojson
+✓ Pakandangan Tengah – Bluto – Sumenep.shp -> Pakandangan Tengah – Bluto – Sumenep.geojson
+✓ Pakis – Banyuwangi – Banyuwangi.shp -> Pakis – Banyuwangi – Banyuwangi.geojson
+✓ Palasa – Talango – Sumenep.shp -> Palasa – Talango – Sumenep.geojson
+✓ Paliat – Sapeken – Sumenep.shp -> Paliat – Sapeken – Sumenep.geojson
+✓ Palo_lo_an – Gapura – Sumenep.shp -> Palo_lo_an – Gapura – Sumenep.geojson
+✓ Pancor – Gayam – Sumenep.shp -> Pancor – Gayam – Sumenep.geojson
+✓ Pandan – Galis – Pamekasan.shp -> Pandan – Galis – Pamekasan.geojson
+✓ Pangarengan – Pangarengan – Sampang.shp -> Pangarengan – Pangarengan – Sampang.geojson
+✓ Pangeranan – Bangkalan – Bangkalan.shp -> Pangeranan – Bangkalan – Bangkalan.geojson
+✓ Pangereman – Ketapang – Sampang.shp -> Pangereman – Ketapang – Sampang.geojson
+✓ Pangpajung – Modung – Bangkalan.shp -> Pangpajung – Modung – Bangkalan.geojson
+✓ Panjalinan – Blega – Bangkalan.shp -> Panjalinan – Blega – Bangkalan.geojson
+✓ Panyirangan – Pangarengan – Sampang.shp -> Panyirangan – Pangarengan – Sampang.geojson
+✓ Paseraman – Arjasa – Sumenep.shp -> Paseraman – Arjasa – Sumenep.geojson
+✓ Paseseh – Tanjung Bumi – Bangkalan.shp -> Paseseh – Tanjung Bumi – Bangkalan.geojson
+✓ Pasir Putih – Bungatan – Situbondo.shp -> Pasir Putih – Bungatan – Situbondo.geojson
+✓ Patenteng – Modung – Bangkalan.shp -> Patenteng – Modung – Bangkalan.geojson
+✓ Patereman – Modung – Bangkalan.shp -> Patereman – Modung – Bangkalan.geojson
+✓ Patokan – Kraksaan – Probolinggo.shp -> Patokan – Kraksaan – Probolinggo.geojson
+✓ Pejagan – Bangkalan – Bangkalan.shp -> Pejagan – Bangkalan – Bangkalan.geojson
+✓ Peleyan – Panarukan – Situbondo.shp -> Peleyan – Panarukan – Situbondo.geojson
+✓ Penambangan – Pejarakan – Probolinggo.shp -> Penambangan – Pejarakan – Probolinggo.geojson
+✓ Penyepen – Jrengik – Sampang.shp -> Penyepen – Jrengik – Sampang.geojson
+✓ Pernajuh – Socah – Bangkalan.shp -> Pernajuh – Socah – Bangkalan.geojson
+✓ Pesanggaran – Pesanggaran – Banyuwangi.shp -> Pesanggaran – Pesanggaran – Banyuwangi.geojson
+✓ Pesanggrahan – Kwanyar – Bangkalan.shp -> Pesanggrahan – Kwanyar – Bangkalan.geojson
+✓ Pesisir – Besuki – Situbondo.shp -> Pesisir – Besuki – Situbondo.geojson
+✓ Pesisir – Gending – Probolinggo.shp -> Pesisir – Gending – Probolinggo.geojson
+✓ Pesisir – Sumberasih – Probolinggo.shp -> Pesisir – Sumberasih – Probolinggo.geojson
+✓ Petaonan – Socah – Bangkalan.shp -> Petaonan – Socah – Bangkalan.geojson
+✓ Pilang – Kademangan – Kota Probolinggo.shp -> Pilang – Kademangan – Kota Probolinggo.geojson
+✓ Pinggirpapas – Kalianget – Sumenep.shp -> Pinggirpapas – Kalianget – Sumenep.geojson
+✓ Plasah – Sreseh – Sampang.shp -> Plasah – Sreseh – Sampang.geojson
+✓ Podokkelor – Paiton – Probolinggo.shp -> Podokkelor – Paiton – Probolinggo.geojson
+✓ Poja – Gapura – Sumenep.shp -> Poja – Gapura – Sumenep.geojson
+✓ Polagan – Galis – Pamekasan.shp -> Polagan – Galis – Pamekasan.geojson
+✓ Polagan – Sampang – Sampang.shp -> Polagan – Sampang – Sampang.geojson
+✓ Pondoknongko – Kabat – Banyuwangi.shp -> Pondoknongko – Kabat – Banyuwangi.geojson
+✓ Poteran – Ra_as – Sumenep.shp -> Poteran – Ra_as – Sumenep.geojson
+✓ Poteran – Talango – Sumenep.shp -> Poteran – Talango – Sumenep.geojson
+✓ Pragaan Laok – Pragaan – Sumenep.shp -> Pragaan Laok – Pragaan – Sumenep.geojson
+✓ Prancak – Sepulu – Bangkalan.shp -> Prancak – Sepulu – Bangkalan.geojson
+✓ Prenduan – Pragaan – Sumenep.shp -> Prenduan – Pragaan – Sumenep.geojson
+✓ Purwoagung – Tegaldlimo – Banyuwangi.shp -> Purwoagung – Tegaldlimo – Banyuwangi.geojson
+✓ Rabiyan – Ketapang – Sampang.shp -> Rabiyan – Ketapang – Sampang.geojson
+✓ Ragung – Pangarengan – Sampang.shp -> Ragung – Pangarengan – Sampang.geojson
+✓ Randuputih – Dringu – Probolinggo.shp -> Randuputih – Dringu – Probolinggo.geojson
+✓ Randutatah – Paiton – Probolinggo.shp -> Randutatah – Paiton – Probolinggo.geojson
+✓ Rosep – Blega – Bangkalan.shp -> Rosep – Blega – Bangkalan.geojson
+✓ Rosong – Nonggunong – Sumenep.shp -> Rosong – Nonggunong – Sumenep.geojson
+✓ Sabiyan – Bangkalan – Bangkalan.shp -> Sabiyan – Bangkalan – Bangkalan.geojson
+✓ Sabrang – Ambulu – Jember.shp -> Sabrang – Ambulu – Jember.geojson
+✓ Sabunten – Sapeken – Sumenep.shp -> Sabunten – Sapeken – Sumenep.geojson
+✓ Sadulang – Sapeken – Sumenep.shp -> Sadulang – Sapeken – Sumenep.geojson
+✓ Sakala – Sapeken – Sumenep.shp -> Sakala – Sapeken – Sumenep.geojson
+✓ Saobi – Kangayan – Sumenep.shp -> Saobi – Kangayan – Sumenep.geojson
+✓ Sapeken – Sapeken – Sumenep.shp -> Sapeken – Sapeken – Sumenep.geojson
+✓ Sarongan – Pesanggaran – Banyuwangi.shp -> Sarongan – Pesanggaran – Banyuwangi.geojson
+✓ Saronggi – Saronggi – Sumenep.shp -> Saronggi – Saronggi – Sumenep.geojson
+✓ Saseel – Sapeken – Sumenep.shp -> Saseel – Sapeken – Sumenep.geojson
+✓ Saur Saebus – Sapeken – Sumenep.shp -> Saur Saebus – Sapeken – Sumenep.geojson
+✓ Sawah Sumur – Arjasa – Sumenep.shp -> Sawah Sumur – Arjasa – Sumenep.geojson
+✓ Sejati – Camplong – Sampang.shp -> Sejati – Camplong – Sampang.geojson
+✓ Seletreng – Kapongan – Situbondo.shp -> Seletreng – Kapongan – Situbondo.geojson
+✓ Selomukti – Mlandingan – Situbondo.shp -> Selomukti – Mlandingan – Situbondo.geojson
+✓ Sembilangan – Bangkalan – Bangkalan.shp -> Sembilangan – Bangkalan – Bangkalan.geojson
+✓ Sendang – Pragaan – Sumenep.shp -> Sendang – Pragaan – Sumenep.geojson
+✓ Sendir – Lenteng – Sumenep.shp -> Sendir – Lenteng – Sumenep.geojson
+✓ Sentol Daya – Pragaan – Sumenep.shp -> Sentol Daya – Pragaan – Sumenep.geojson
+✓ Sepanjang – Sapeken – Sumenep.shp -> Sepanjang – Sapeken – Sumenep.geojson
+✓ Sepulu – Sepulu – Bangkalan.shp -> Sepulu – Sepulu – Bangkalan.geojson
+✓ Sidopekso – Kraksaan – Probolinggo.shp -> Sidopekso – Kraksaan – Probolinggo.geojson
+✓ Sobih – Burneh – Bangkalan.shp -> Sobih – Burneh – Bangkalan.geojson
+✓ Sobo – Banyuwangi – Banyuwangi.shp -> Sobo – Banyuwangi – Banyuwangi.geojson
+✓ Socah – Socah – Bangkalan.shp -> Socah – Socah – Bangkalan.geojson
+✓ Sonok – Nonggunong – Sumenep.shp -> Sonok – Nonggunong – Sumenep.geojson
+✓ Sopa_ah – Pademawu – Pamekasan.shp -> Sopa_ah – Pademawu – Pamekasan.geojson
+✓ Srabi Barat – Modung – Bangkalan.shp -> Srabi Barat – Modung – Bangkalan.geojson
+✓ Sreseh – Sreseh – Sampang.shp -> Sreseh – Sreseh – Sampang.geojson
+✓ Suboh – Suboh – Situbondo.shp -> Suboh – Suboh – Situbondo.geojson
+✓ Sukabumi – Mayangan – Kota Probolinggo.shp -> Sukabumi – Mayangan – Kota Probolinggo.geojson
+✓ Sukajeruk – Masalembu – Sumenep.shp -> Sukajeruk – Masalembu – Sumenep.geojson
+✓ Sukodadi – Paiton – Probolinggo.shp -> Sukodadi – Paiton – Probolinggo.geojson
+✓ Sukojati – Blimbingsari – Banyuwangi.shp -> Sukojati – Blimbingsari – Banyuwangi.geojson
+✓ Sukokerto – Pejarakan – Probolinggo.shp -> Sukokerto – Pejarakan – Probolinggo.geojson
+✓ Sumberagung – Pesanggaran – Banyuwangi.shp -> Sumberagung – Pesanggaran – Banyuwangi.geojson
+✓ Sumberanyar – Banyuputih – Situbondo.shp -> Sumberanyar – Banyuputih – Situbondo.geojson
+✓ Sumberanyar – Paiton – Probolinggo.shp -> Sumberanyar – Paiton – Probolinggo.geojson
+✓ Sumberasri – Purwoharjo – Banyuwangi.shp -> Sumberasri – Purwoharjo – Banyuwangi.geojson
+✓ Sumberejo – Ambulu – Jember.shp -> Sumberejo – Ambulu – Jember.geojson
+✓ Sumberejo – Banyuputih – Situbondo.shp -> Sumberejo – Banyuputih – Situbondo.geojson
+✓ Sumberejo – Paiton – Probolinggo.shp -> Sumberejo – Paiton – Probolinggo.geojson
+✓ Sumbersewu – Muncar – Banyuwangi.shp -> Sumbersewu – Muncar – Banyuwangi.geojson
+✓ Sumberwaru – Banyuputih – Situbondo.shp -> Sumberwaru – Banyuputih – Situbondo.geojson
+✓ Suwa_an – Modung – Bangkalan.shp -> Suwa_an – Modung – Bangkalan.geojson
+✓ Taddan – Camplong – Sampang.shp -> Taddan – Camplong – Sampang.geojson
+✓ Tajungan – Kamal – Bangkalan.shp -> Tajungan – Kamal – Bangkalan.geojson
+✓ Talaga – Nonggunong – Sumenep.shp -> Talaga – Nonggunong – Sumenep.geojson
+✓ Talango – Talango – Sumenep.shp -> Talango – Talango – Sumenep.geojson
+✓ Taman – Sreseh – Sampang.shp -> Taman – Sreseh – Sampang.geojson
+✓ Tamansari – Dringu – Probolinggo.shp -> Tamansari – Dringu – Probolinggo.geojson
+✓ Tambakrejo – Tongas – Probolinggo.shp -> Tambakrejo – Tongas – Probolinggo.geojson
+✓ Tamba_an – Camplong – Sampang.shp -> Tamba_an – Camplong – Sampang.geojson
+✓ Tanagura Barat – Sepulu – Bangkalan.shp -> Tanagura Barat – Sepulu – Bangkalan.geojson
+✓ Tangjungjati – Kamal – Bangkalan.shp -> Tangjungjati – Kamal – Bangkalan.geojson
+✓ Tanjung Bumi – Tanjung Bumi – Bangkalan.shp -> Tanjung Bumi – Tanjung Bumi – Bangkalan.geojson
+✓ Tanjung Glugur – Mangaran – Situbondo.shp -> Tanjung Glugur – Mangaran – Situbondo.geojson
+✓ Tanjung Kiaok – Sapeken – Sumenep.shp -> Tanjung Kiaok – Sapeken – Sumenep.geojson
+✓ Tanjung Pecinan – Mangaran – Situbondo.shp -> Tanjung Pecinan – Mangaran – Situbondo.geojson
+✓ Tanjung – Pademawu – Pamekasan.shp -> Tanjung – Pademawu – Pamekasan.geojson
+✓ Tanjung – Saronggi – Sumenep.shp -> Tanjung – Saronggi – Sumenep.geojson
+✓ Tebanah – Banyuates – Sampang.shp -> Tebanah – Banyuates – Sampang.geojson
+✓ Tegalrejo – Tempursari – Lumajang.shp -> Tegalrejo – Tempursari – Lumajang.geojson
+✓ Telaga Biru – Tanjung Bumi – Bangkalan.shp -> Telaga Biru – Tanjung Bumi – Bangkalan.geojson
+✓ Telang – Kamal – Bangkalan.shp -> Telang – Kamal – Bangkalan.geojson
+✓ Tembayangan – Kangayan – Sumenep.shp -> Tembayangan – Kangayan – Sumenep.geojson
+✓ Tempurejo – Tempursari – Lumajang.shp -> Tempurejo – Tempursari – Lumajang.geojson
+✓ Tenggun Dajah – Klampis – Bangkalan.shp -> Tenggun Dajah – Klampis – Bangkalan.geojson
+✓ Tengket – Arosbaya – Bangkalan.shp -> Tengket – Arosbaya – Bangkalan.geojson
+✓ Timur Jang-Jang – Kangayan – Sumenep.shp -> Timur Jang-Jang – Kangayan – Sumenep.geojson
+✓ Tlanakan – Tlanakan – Pamekasan.shp -> Tlanakan – Tlanakan – Pamekasan.geojson
+✓ Tlangoh – Tanjung Bumi – Bangkalan.shp -> Tlangoh – Tanjung Bumi – Bangkalan.geojson
+✓ Tlesah – Tlanakan – Pamekasan.shp -> Tlesah – Tlanakan – Pamekasan.geojson
+✓ Tobaddung – Klampis – Bangkalan.shp -> Tobaddung – Klampis – Bangkalan.geojson
+✓ Tolbuk – Klampis – Bangkalan.shp -> Tolbuk – Klampis – Bangkalan.geojson
+✓ Tonduk – Ra_as – Sumenep.shp -> Tonduk – Ra_as – Sumenep.geojson
+✓ Tongas Kulon – Tongas – Probolinggo.shp -> Tongas Kulon – Tongas – Probolinggo.geojson
+✓ Tongas Wetan – Tongas – Probolinggo.shp -> Tongas Wetan – Tongas – Probolinggo.geojson
+✓ Torjek – Kangayan – Sumenep.shp -> Torjek – Kangayan – Sumenep.geojson
+✓ Trapang – Banyuates – Sampang.shp -> Trapang – Banyuates – Sampang.geojson
+✓ Ujung Piring – Bangkalan – Bangkalan.shp -> Ujung Piring – Bangkalan – Bangkalan.geojson
+✓ Watukebo – Blimbingsari – Banyuwangi.shp -> Watukebo – Blimbingsari – Banyuwangi.geojson
+✓ Wongsorejo – Wongsorejo – Banyuwangi.shp -> Wongsorejo – Wongsorejo – Banyuwangi.geojson
+✓ Wonorejo – Banyuputih – Situbondo.shp -> Wonorejo – Banyuputih – Situbondo.geojson
+✓ Wotgalih – Yosowilangun – Lumajang.shp -> Wotgalih – Yosowilangun – Lumajang.geojson
+✓ Wringin Anom – Asembagus – Situbondo.shp -> Wringin Anom – Asembagus – Situbondo.geojson
+✓ Wringinanom – Panarukan – Situbondo.shp -> Wringinanom – Panarukan – Situbondo.geojson
+✓ Wringinputih – Muncar – Banyuwangi.shp -> Wringinputih – Muncar – Banyuwangi.geojson
+
+================================================================================
+SUMMARY KONVERSI
+================================================================================
+Waktu selesai: 2026-02-03 03:53:51
+Durasi proses: 305.50 detik (5.09 menit)
+Total file berhasil: 380
+Total file gagal: 1
+Persentase sukses: 99.7%
