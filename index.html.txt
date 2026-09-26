@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGIS Sebaran Mangrove Jawa Timur</title>
+    
+    <!-- Memanggil CSS Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Memanggil CSS buatan sendiri -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Wadah untuk menampilkan peta -->
+    <div id="map"></div>
+
+    <!-- Memanggil JavaScript Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Memanggil JavaScript buatan sendiri -->
+    <script src="js/app.js"></script>
+</body>
+</html>

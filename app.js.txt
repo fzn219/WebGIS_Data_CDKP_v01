@@ -1,0 +1,84 @@
+// 1. Inisialisasi Peta (sesuai catatan spesifikasi kita)
+var map = L.map('map', {
+    preferCanvas: true, // Mengaktifkan canvas agar rendering lebih ringan
+    minZoom: 8,         // Batas maksimal zoom out
+    maxZoom: 15         // Batas maksimal zoom in (kompensasi toleransi 20 meter)
+}).setView([-7.6, 113.2], 8); // Kordinat tengah Jawa Timur
+
+// 2. Tambahkan Peta Dasar (Basemap OpenStreetMap)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 15,
+    attribution: '© OpenStreetMap contributors | Cabang Dinas Kelautan dan Perikanan'
+}).addTo(map);
+
+// 3. Siapkan layer kosong untuk menampung mangrove desa nanti
+var mangroveLayer = L.layerGroup().addTo(map);
+
+// 4. Fungsi Indeks Warna (Choropleth) berdasarkan Luas Mangrove
+function getColor(luas) {
+    return luas > 100 ? '#005a32' : // Hijau sangat tua (>100 Ha)
+           luas > 50  ? '#238b45' : // Hijau tua (50 - 100 Ha)
+           luas > 10  ? '#74c476' : // Hijau sedang (10 - 50 Ha)
+           luas > 0   ? '#bae4b3' : // Hijau muda (<10 Ha)
+                        '#f7fcf5';  // Putih/Sangat pudar (0 Ha / Tidak ada data)
+}
+
+function styleWilayah(feature) {
+    return {
+        fillColor: getColor(feature.properties.Luas_Mangrove),
+        weight: 1,           // Ketebalan garis batas desa
+        opacity: 1,
+        color: '#666',       // Warna garis batas desa (abu-abu)
+        fillOpacity: 0.7     // Transparansi warna area
+    };
+}
+
+// 5. Fungsi Interaksi (Hover dan Klik)
+function onEachFeature(feature, layer) {
+    var namaDesa = feature.properties.WADMKD; // Pastikan ini nama kolom desa Anda
+    var luas = feature.properties.Luas_Mangrove;
+
+    // Memunculkan Tooltip saat disorot mouse
+    layer.bindTooltip("<b>Desa: " + namaDesa + "</b><br>Luas Mangrove: " + luas + " Ha");
+
+    // Aksi saat desa diklik
+    layer.on('click', function(e) {
+        // Bersihkan data mangrove dari desa sebelumnya yang sedang tampil
+        mangroveLayer.clearLayers();
+
+        if (luas > 0) {
+            // Memanggil file mangrove desa tersebut (Lazy Loading)
+            // Asumsi: Nama file Anda sama persis dengan atribut WADMKD (misal: "Ketapang.geojson")
+            var pathMangrove = 'data/mangrove_desa/' + namaDesa + '.geojson';
+            
+            fetch(pathMangrove)
+                .then(response => {
+                    if(!response.ok) throw new Error("File tidak ditemukan");
+                    return response.json();
+                })
+                .then(data => {
+                    // Tampilkan mangrove ke peta dengan warna mencolok (Merah)
+                    var mangroveBaru = L.geoJSON(data, {
+                        style: { color: "#ff0000", weight: 2, fillColor: "#ff0000", fillOpacity: 0.8 }
+                    });
+                    mangroveLayer.addLayer(mangroveBaru);
+                    
+                    // Otomatis perbesar (zoom) ke area mangrove yang baru dipanggil
+                    map.fitBounds(mangroveBaru.getBounds());
+                })
+                .catch(error => {
+                    console.log("Data mangrove spesifik tidak ditemukan untuk desa: " + namaDesa);
+                });
+        }
+    });
+}
+
+// 6. Memanggil Batas Wilayah saat web pertama dibuka
+fetch('data/batas_wilayah.geojson')
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data, {
+            style: styleWilayah,
+            onEachFeature: onEachFeature
+        }).addTo(map);
+    });

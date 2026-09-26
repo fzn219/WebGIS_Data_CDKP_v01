@@ -1,0 +1,12 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    height: 100vh; /* 100% dari tinggi layar browser */
+    width: 100vw;  /* 100% dari lebar layar browser */
+}
