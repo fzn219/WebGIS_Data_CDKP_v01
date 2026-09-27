@@ -1,72 +1,82 @@
-// 1. Inisialisasi Peta - Titik tengah Probolinggo & Batasan Zoom
+// 1. Inisialisasi Peta
 var map = L.map('map', {
     preferCanvas: true,
-    minZoom: 9,  // Limit zoom out diperketat
-    maxZoom: 17  // Limit zoom in diperdalam
-}).setView([-7.7543, 113.2159], 10); // Default zoom fokus di Probolinggo (sekitar 20% luasan)
-
-// 2. Tiga Opsi Basemap Profesional
-var positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '© OpenStreetMap, © CartoDB',
+    minZoom: 9,
     maxZoom: 17
-});
+}).setView([-7.7543, 113.2159], 10);
 
-var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+// 2. Tiga Opsi Basemap Baru
+var esriTopo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles © Esri',
     maxZoom: 17
 });
 
-var darkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '© OpenStreetMap, © CartoDB',
+var esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri',
     maxZoom: 17
 });
 
-// Set basemap default (Carto Positron paling bagus untuk peta Choropleth)
-positron.addTo(map);
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap',
+    maxZoom: 17
+});
 
-// Tambahkan Kontrol Panel untuk mengganti Basemap
+// Set basemap default (Esri Topography)
+esriTopo.addTo(map);
+
 var baseMaps = {
-    "Peta Terang (Positron)": positron,
-    "Satelit (Esri)": satellite,
-    "Peta Gelap (Dark Matter)": darkMatter
+    "Esri Topography": esriTopo,
+    "Esri Satellite": esriSatellite,
+    "OpenStreetMap": osm
 };
 L.control.layers(baseMaps).addTo(map);
 
-// 3. Layer Kosong untuk Mangrove Desa (Fase 2 nantinya)
+// 3. Layer Kosong untuk Mangrove Desa
 var mangroveLayer = L.layerGroup().addTo(map);
 
-// 4. Gradasi Warna (Digandakan menjadi 8 kelas untuk detail presisi)
+// 4. Gradasi Warna
 function getColor(luas) {
-    return luas >= 500 ? '#00441b' : // Hijau sangat pekat
+    return luas >= 500 ? '#00441b' : 
            luas >= 250 ? '#006d2c' :
            luas >= 100 ? '#238b45' :
            luas >= 50  ? '#41ab5d' :
            luas >= 25  ? '#74c476' :
            luas >= 10  ? '#a1d99b' :
-           luas >  0   ? '#c7e9c0' : // Hijau sangat muda
-                         '#f7fcf5';  // 0 Ha / Sangat pudar
+           luas >  0   ? '#c7e9c0' : 
+                         '#ffffff';  // Putih untuk nilai 0
 }
 
-// 5. Style Poligon (Tanpa outline, transparansi diperkecil)
+// 5. Style Poligon (Transparansi diatur berdasarkan luasan)
 function styleWilayah(feature) {
+    var luas = feature.properties.Luas_Mangrove || 0;
     return {
-        fillColor: getColor(feature.properties.Luas_Mangrove),
-        weight: 0,           // OUTLINE DIHILANGKAN
-        fillOpacity: 0.95    // FILL LEBIH PEKAT (mendekati 1)
+        fillColor: getColor(luas),
+        weight: 0,
+        // Transparansi 60% (opacity 0.4) jika ada mangrove, Transparansi 100% (opacity 0) jika 0
+        fillOpacity: luas > 0 ? 0.4 : 0 
     };
 }
 
 // 6. Interaksi Sorot & Klik Poligon
 function onEachFeature(feature, layer) {
-    var namaDesa = feature.properties.WADMKD; 
-    var luas = feature.properties.Luas_Mangrove;
+    var luas = feature.properties.Luas_Mangrove || 0;
+    var desa = feature.properties.WADMKD || "-";
+    var kec = feature.properties.WADMKC || "-";
+    var kab = feature.properties.WADMKK || "-";
 
-    layer.bindTooltip("<b>Desa: " + namaDesa + "</b><br>Luas Mangrove: " + luas + " Ha");
+    // Format lokasi (Desa - Kecamatan - Kabupaten) dan 4 desimal
+    var lokasi = desa + " - " + kec + " - " + kab;
+    var luasFormat = luas.toFixed(4);
+
+    // Tooltip interaktif
+    if (luas > 0) {
+        layer.bindTooltip("<b>Lokasi: " + lokasi + "</b><br>Luas Mangrove: " + luasFormat + " Ha");
+    }
 
     layer.on('click', function(e) {
         mangroveLayer.clearLayers();
         if (luas > 0) {
-            var pathMangrove = 'data/data_mangrove/' + namaDesa + '.geojson';
+            var pathMangrove = 'data/data_mangrove/' + desa + '.geojson';
             fetch(pathMangrove)
                 .then(response => {
                     if(!response.ok) throw new Error("File tidak ditemukan");
@@ -79,26 +89,23 @@ function onEachFeature(feature, layer) {
                     mangroveLayer.addLayer(mangroveBaru);
                     map.fitBounds(mangroveBaru.getBounds());
                 })
-                .catch(error => console.log("Data spesifik belum ada untuk: " + namaDesa));
+                .catch(error => console.log("Data spesifik belum ada untuk: " + desa));
         }
     });
 }
 
 // 7. Menambahkan Keterangan Indeks Warna (Legend)
 var legend = L.control({position: 'bottomright'});
-
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
-    // Batas bawah setiap kelas (sama seperti fungsi getColor)
     var grades = [0, 0.1, 10, 25, 50, 100, 250, 500]; 
     var labels = ['<strong>Luas Mangrove (Ha)</strong><br>'];
 
     for (var i = 0; i < grades.length; i++) {
         var from = grades[i];
         var to = grades[i + 1];
-
-        // Format penulisan teks di legenda
         var textDisplay = '';
+
         if (from === 0 && to === 0.1) {
             textDisplay = '0 (Tidak Ada)';
         } else if (from === 0.1) {
@@ -107,8 +114,13 @@ legend.onAdd = function (map) {
             textDisplay = from + (to ? '&ndash;' + to : '+');
         }
 
+        // Tampilan khusus di legenda: jika 0, kotak warna transparan dengan garis batas
+        var legendColor = getColor(from + 0.1);
+        var legendOpacity = from === 0 ? '0' : '0.4';
+        var legendBorder = from === 0 ? '1px dashed #999' : 'none';
+
         labels.push(
-            '<i style="background:' + getColor(from + 0.1) + '"></i> ' + textDisplay
+            '<i style="background:' + legendColor + '; opacity:' + legendOpacity + '; border:' + legendBorder + ';"></i> ' + textDisplay
         );
     }
     div.innerHTML = labels.join('<br>');
@@ -126,6 +138,5 @@ fetch('data/Wilker_STBD_mangrove.geojson')
             onEachFeature: onEachFeature
         }).addTo(map);
         console.log("Data berhasil dimuat!");
-        // (Perintah fitBounds dihapus agar peta tetap terpusat di Probolinggo sesuai setingan setView)
     })
     .catch(error => console.error("Gagal memuat GeoJSON:", error));
