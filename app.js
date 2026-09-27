@@ -82,38 +82,44 @@ function onEachFeature(feature, layer) {
     }
 }
 
-// 7. FUNGSI RADAR: Memanggil Tile Mangrove Akurat (Kuning)
+// 7. FUNGSI RADAR: Memanggil Tile Mangrove Akurat (Kuning) + DETEKTOR
 function loadVisibleGridJatim() {
-    if (map.getZoom() < 14 || !gridJatimLayer) return;
+    var currentZoom = map.getZoom();
+    if (currentZoom < 14 || !gridJatimLayer) return;
 
     var mapBounds = map.getBounds();
+    var totalKotak = 0;
+    var kotakMasukLayar = 0;
 
     gridJatimLayer.eachLayer(function(layer) {
+        totalKotak++;
         var grid_id = layer.feature.properties.GridID;
 
-        // Jika kotak radar masuk layar dan tile-nya belum diunduh
-        if (grid_id && !loadedGrids.has(grid_id) && mapBounds.intersects(layer.getBounds())) {
-            loadedGrids.add(grid_id);
+        // Cek apakah kotak bersinggungan dengan layar
+        if (grid_id && mapBounds.intersects(layer.getBounds())) {
+            kotakMasukLayar++;
 
-            var pathTile = 'data/data_mangrove/mangrove_jatim_' + grid_id + '.geojson';
-            
-            fetch(pathTile)
-                .then(response => { if(response.ok) return response.json(); })
-                .then(data => {
-                    if(data) {
-                        var tileBaru = L.geoJSON(data, {
-                            style: { 
-                                color: "#ffff00",       // Garis tepi kuning
-                                weight: 1.5, 
-                                fillColor: "#ffff00",   // Isi poligon kuning padat
-                                fillOpacity: 1.0 
-                            }
-                        });
-                        mangroveJatimLayer.addLayer(tileBaru);
-                    }
-                }).catch(e => {}); // Abaikan diam-diam jika kosong (Error 404 teredam)
+            if (!loadedGrids.has(grid_id)) {
+                loadedGrids.add(grid_id);
+                var pathTile = 'data/data_mangrovejatim/mangrove_jatim_' + grid_id + '.geojson';
+                console.log("🔍 Menarik tile: " + pathTile);
+
+                fetch(pathTile)
+                    .then(response => { if(response.ok) return response.json(); })
+                    .then(data => {
+                        if(data) {
+                            var tileBaru = L.geoJSON(data, {
+                                style: { color: "#ffff00", weight: 1.5, fillColor: "#ffff00", fillOpacity: 1.0 }
+                            });
+                            mangroveJatimLayer.addLayer(tileBaru);
+                        }
+                    }).catch(e => {}); 
+            }
         }
     });
+
+    // Menampilkan hasil deteksi radar ke Console
+    console.log("📊 Cek Radar -> Total Kotak Tersimpan: " + totalKotak + " | Kotak Masuk Layar: " + kotakMasukLayar);
 }
 
 // 8. KONTROL INTERAKSI LAYAR (Zoom & Geser)
