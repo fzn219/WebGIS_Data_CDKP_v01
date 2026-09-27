@@ -82,44 +82,42 @@ function onEachFeature(feature, layer) {
     }
 }
 
-// 7. FUNGSI RADAR: Memanggil Tile Mangrove Akurat (Kuning) + DETEKTOR
+// 7. FUNGSI RADAR: Memanggil Tile dari 2 Folder Berbeda (Desa & Grid Jatim)
 function loadVisibleGridJatim() {
-    var currentZoom = map.getZoom();
-    if (currentZoom < 14 || !gridJatimLayer) return;
+    if (map.getZoom() < 14 || !gridJatimLayer) return;
 
     var mapBounds = map.getBounds();
-    var totalKotak = 0;
-    var kotakMasukLayar = 0;
 
     gridJatimLayer.eachLayer(function(layer) {
-        totalKotak++;
-        var grid_id = layer.feature.properties.GridID;
+        var tipe = layer.feature.properties.Type;
+        var filename = layer.feature.properties.FileName;
 
-        // Cek apakah kotak bersinggungan dengan layar
-        if (grid_id && mapBounds.intersects(layer.getBounds())) {
-            kotakMasukLayar++;
+        // Gunakan filename sebagai ID memori agar tidak ada file ganda yang diunduh berulang
+        if (filename && !loadedGrids.has(filename) && mapBounds.intersects(layer.getBounds())) {
+            loadedGrids.add(filename);
 
-            if (!loadedGrids.has(grid_id)) {
-                loadedGrids.add(grid_id);
-                var pathTile = 'data/data_mangrovejatim/mangrove_jatim_' + grid_id + '.geojson';
-                console.log("🔍 Menarik tile: " + pathTile);
-
-                fetch(pathTile)
-                    .then(response => { if(response.ok) return response.json(); })
-                    .then(data => {
-                        if(data) {
-                            var tileBaru = L.geoJSON(data, {
-                                style: { color: "#ffff00", weight: 1.5, fillColor: "#ffff00", fillOpacity: 1.0 }
-                            });
-                            mangroveJatimLayer.addLayer(tileBaru);
-                        }
-                    }).catch(e => {}); 
-            }
+            // Cerdas Memilih Folder: Jika Desa arahkan ke data_mangrove, jika Grid arahkan ke data_mangrovejatim
+            var folder = (tipe === "Desa") ? "data_mangrove" : "data_mangrovejatim";
+            var pathTile = 'data/' + folder + '/' + encodeURIComponent(filename);
+            
+            fetch(pathTile)
+                .then(response => { if(response.ok) return response.json(); })
+                .then(data => {
+                    if(data) {
+                        var tileBaru = L.geoJSON(data, {
+                            style: { 
+                                // Cerdas Memilih Warna: Jika Desa beri warna HIJAU, jika Grid beri warna KUNING
+                                color: tipe === "Desa" ? "#00ff00" : "#ffff00",       
+                                weight: 1.5, 
+                                fillColor: tipe === "Desa" ? "#00ff00" : "#ffff00",   
+                                fillOpacity: 1.0 
+                            }
+                        });
+                        mangroveJatimLayer.addLayer(tileBaru);
+                    }
+                }).catch(e => {}); 
         }
     });
-
-    // Menampilkan hasil deteksi radar ke Console
-    console.log("📊 Cek Radar -> Total Kotak Tersimpan: " + totalKotak + " | Kotak Masuk Layar: " + kotakMasukLayar);
 }
 
 // 8. KONTROL INTERAKSI LAYAR (Zoom & Geser)
