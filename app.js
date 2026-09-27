@@ -31,6 +31,9 @@ L.control.layers(baseMaps).addTo(map);
 // 3. Layer Kosong untuk Mangrove & Wilayah
 var mangroveLayer = L.layerGroup().addTo(map);
 var wilayahLayer; // Variabel global untuk menyimpan data batas desa
+var mangroveJatimLayer = L.layerGroup().addTo(map); // Tempat menampung visual kuning
+var gridJatimLayer;                                 // Peta radar transparan
+var loadedGrids = new Set();                        // Memori kotak yang sudah diload
 
 // DAFTAR MEMORI: Menyimpan nama desa yang sudah di-load agar tidak dipanggil berulang kali
 var loadedDesa = new Set(); 
@@ -89,7 +92,39 @@ function onEachFeature(feature, layer) {
 // 7. FUNGSI RADAR LAYAR: Memanggil data mangrove dengan format nama file yang benar
 function loadVisibleMangroves() {
     if (map.getZoom() < 14 || !wilayahLayer) return;
+// FUNGSI RADAR: Mengecek kotak mana yang tersorot layar dan memanggil tilenya
+function loadVisibleGridJatim() {
+    if (map.getZoom() < 14 || !gridJatimLayer) return;
 
+    var mapBounds = map.getBounds();
+
+    gridJatimLayer.eachLayer(function(layer) {
+        var grid_id = layer.feature.properties.GridID;
+
+        // Jika kotak radar tersorot layar dan belum pernah diload
+        if (grid_id && !loadedGrids.has(grid_id) && mapBounds.intersects(layer.getBounds())) {
+            loadedGrids.add(grid_id);
+
+            var pathTile = 'data/data_mangrove/mangrove_jatim_' + grid_id + '.geojson';
+            
+            fetch(pathTile)
+                .then(response => { if(response.ok) return response.json(); })
+                .then(data => {
+                    if(data) {
+                        var tileBaru = L.geoJSON(data, {
+                            style: { 
+                                color: "#ffff00",       // Garis tepi kuning
+                                weight: 1.5, 
+                                fillColor: "#ffff00",   // Isi poligon kuning padat
+                                fillOpacity: 1.0 
+                            }
+                        });
+                        mangroveJatimLayer.addLayer(tileBaru);
+                    }
+                }).catch(e => {}); // Abaikan diam-diam jika kosong
+        }
+    });
+}
     var mapBounds = map.getBounds(); 
 
     wilayahLayer.eachLayer(function(layer) {
@@ -141,26 +176,24 @@ function loadVisibleMangroves() {
 // 8. KONTROL INTERAKSI LAYAR (Zoom & Geser)
 map.on('zoomend', function() {
     var currentZoom = map.getZoom();
-    
-    // Perbarui tampilan warna/garis desa setiap kali zoom selesai
-    if (wilayahLayer) {
-        wilayahLayer.setStyle(styleWilayah);
-    }
+    if (wilayahLayer) wilayahLayer.setStyle(styleWilayah);
 
     if (currentZoom >= 14) {
-        // Tembakkan radar untuk memanggil mangrove jika zoom 14+
         loadVisibleMangroves();
+        loadVisibleGridJatim(); // <--- Eksekusi radar kuning
     } else {
-        // Jika di zoom out (<14), bersihkan peta dari warna merah dan reset memori!
         mangroveLayer.clearLayers();
         loadedDesa.clear();
+        // Bersihkan data kuning jika zoom out (<14)
+        mangroveJatimLayer.clearLayers(); 
+        loadedGrids.clear();
     }
 });
 
 map.on('moveend', function() {
-    // Tembakkan radar saat layar digeser, HANYA jika sedang di zoom 14+
     if (map.getZoom() >= 14) {
         loadVisibleMangroves();
+        loadVisibleGridJatim(); // <--- Eksekusi radar kuning
     }
 });
 
@@ -211,25 +244,14 @@ fetch('data/Wilker_STBD_mangrove.geojson')
     })
     .catch(error => console.error("Gagal memuat GeoJSON:", error));
 
-// 11. Memanggil Data Mangrove Tambahan (Independen)
-console.log("Memuat data mangrove Jatim (Independen)...");
-fetch('data/data_mangrove/Mangrove_Wilker_Jatim.geojson')
-    .then(response => {
-        if(!response.ok) throw new Error("File Mangrove Independen tidak ditemukan");
-        return response.json();
-    })
+// 11. Memanggil radar grid secara transparan (tak terlihat)
+fetch('data/indeks_grid_jatim.geojson')
+    .then(response => response.json())
     .then(data => {
-        var mangroveJatim = L.geoJSON(data, {
-            style: { 
-                color: "#ffff00",       // Garis tepi kuning
-                weight: 2, 
-                fillColor: "#ffff00",   // Isi poligon kuning padat
-                fillOpacity: 1.0        // Transparansi 0 (100% solid)
-            }
-        });
+        gridJatimLayer = L.geoJSON(data, {
+            style: { opacity: 0, fillOpacity: 0 } // Dibuat 100% tembus pandang
+        }).addTo(map);
         
-        // Memasukkan data ke dalam grup layer atau peta utama
-        mangroveJatim.addTo(map);
-        console.log("✅ SUKSES memuat mangrove Jatim independen!");
-    })
-    .catch(error => console.error("❌ Gagal memuat mangrove Jatim:", error));
+        loadVisibleGridJatim(); // Cek layar darurat
+        console.log("Radar Grid Jatim berhasil diaktifkan!");
+    });
