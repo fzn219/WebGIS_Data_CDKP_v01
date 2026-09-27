@@ -1,3 +1,17 @@
+/* Pengaturan Ukuran Kanvas Utama */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    height: 100vh; /* Instruksi krusial agar peta ditarik setinggi layar */
+    width: 100vw;  /* Instruksi agar peta selebar layar */
+}
+
 /* Pengaturan Keterangan Legenda */
 .info {
     padding: 8px 12px;
