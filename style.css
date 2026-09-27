@@ -1,0 +1,34 @@
+/* Pengaturan Ukuran Kanvas Utama */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    height: 100vh; /* Instruksi krusial agar peta ditarik setinggi layar */
+    width: 100vw;  /* Instruksi agar peta selebar layar */
+}
+
+/* Pengaturan Keterangan Legenda */
+.info {
+    padding: 8px 12px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    color: #333;
+}
+.legend {
+    line-height: 20px;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.95;
+}
