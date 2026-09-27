@@ -110,7 +110,7 @@ function loadVisibleGridJatim() {
                                 color: tipe === "Desa" ? "#00ff00" : "#ffff00",       
                                 weight: 1.5, 
                                 fillColor: tipe === "Desa" ? "#00ff00" : "#ffff00",   
-                                fillOpacity: 1.0 
+                                fillOpacity: 0.8 
                             }
                         });
                         mangroveJatimLayer.addLayer(tileBaru);
@@ -122,23 +122,29 @@ function loadVisibleGridJatim() {
 
 // 8. KONTROL INTERAKSI LAYAR (Zoom & Geser)
 map.on('zoomend', function() {
+    var currentZoom = map.getZoom();
+    
     // Selalu perbarui transparansi peta desa saat zoom
     if (wilayahLayer) {
         wilayahLayer.setStyle(styleWilayah);
     }
 
-    if (map.getZoom() >= 14) {
-        loadVisibleGridJatim(); // Panggil mangrove grid
-    } else {
-        // Bersihkan mangrove grid saat zoom out
-        mangroveJatimLayer.clearLayers(); 
-        loadedGrids.clear();
+    // Jika level zoom 14 atau lebih (Zoom In)
+    if (currentZoom >= 14) {
+        loadVisibleGridJatim();         // Panggil data mangrove hijau & kuning
+        map.addControl(mangroveLegend); // TAMPILKAN box keterangan mangrove
+    } 
+    // Jika level zoom di bawah 14 (Zoom Out)
+    else {
+        mangroveJatimLayer.clearLayers();  // Bersihkan data mangrove dari layar
+        loadedGrids.clear();               // Kosongkan memori pemanggilan file
+        map.removeControl(mangroveLegend); // SEMBUNYIKAN box keterangan mangrove
     }
 });
 
 map.on('moveend', function() {
     if (map.getZoom() >= 14) {
-        loadVisibleGridJatim(); 
+        loadVisibleGridJatim(); // Tetap panggil data saat layar digeser
     }
 });
 
@@ -203,3 +209,14 @@ fetch('data/indeks_grid_jatim.geojson')
         loadVisibleGridJatim(); 
     })
     .catch(error => console.error("Gagal memuat Radar Grid:", error));
+
+// 12. Box Keterangan Mangrove (Desa vs Provinsi)
+var mangroveLegend = L.control({position: 'bottomleft'}); // Diletakkan di kiri bawah agar tidak menumpuk
+mangroveLegend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML = 
+        '<strong>Keterangan Mangrove</strong><br>' +
+        '<i style="background:#00ff00; opacity:0.8; border:1px solid #999;"></i> Mangrove dalam kawasan batas administratif Kota/Kabupaten<br>' +
+        '<i style="background:#ffff00; opacity:0.8; border:1px solid #999;"></i> Mangrove luar kawasan batas administratif Kota/Kabupaten';
+    return div;
+};
