@@ -86,34 +86,45 @@ function onEachFeature(feature, layer) {
     // layer.on('click') dihapus karena sekarang otomatis!
 }
 
-// 7. FUNGSI RADAR: Mengecek poligon desa yang masuk layar & memanggil data mangrove
+// 7. FUNGSI RADAR LAYAR: Memunculkan visual mangrove murni berdasarkan sorotan layar
 function loadVisibleMangroves() {
-    // Jangan lakukan apa-apa jika belum cukup zoom
+    // Jangan lakukan apa-apa jika zoom di bawah 14
     if (map.getZoom() < 14 || !wilayahLayer) return;
 
     var mapBounds = map.getBounds(); // Ambil kotak koordinat layar saat ini
 
     wilayahLayer.eachLayer(function(layer) {
-        var luas = layer.feature.properties.Luas_Mangrove || 0;
         var desa = layer.feature.properties.WADMKD;
 
-        // Syarat: Ada mangrove, belum pernah diload, dan poligon bersinggungan dengan layar
-        if (luas > 0 && desa && !loadedDesa.has(desa) && mapBounds.intersects(layer.getBounds())) {
-            loadedDesa.add(desa); // Catat ke memori agar tidak diload dua kali
+        // Jika poligon desa masuk ke dalam sorotan layar dan belum dimuat
+        if (desa && !loadedDesa.has(desa) && mapBounds.intersects(layer.getBounds())) {
+            loadedDesa.add(desa); // Catat agar tidak diunduh berulang saat layar digeser sedikit
 
+            // Panggil file mangrove murni berdasarkan nama desa
             var pathMangrove = 'data/data_mangrove/' + desa + '.geojson';
+            
             fetch(pathMangrove)
                 .then(response => {
-                    if(!response.ok) throw new Error("File tidak ditemukan");
-                    return response.json();
+                    // Jika file ada, ubah ke JSON. Jika tidak ada (desa tanpa mangrove), abaikan.
+                    if(response.ok) return response.json();
                 })
                 .then(data => {
-                    var mangroveBaru = L.geoJSON(data, {
-                        style: { color: "#ff0000", weight: 2, fillColor: "#ff0000", fillOpacity: 0.8 }
-                    });
-                    mangroveLayer.addLayer(mangroveBaru);
+                    if(data) {
+                        // Tampilkan murni sebagai visual Hijau Terang
+                        var mangroveBaru = L.geoJSON(data, {
+                            style: { 
+                                color: "#00ff00",       // Garis batas Hijau Terang
+                                weight: 1.5, 
+                                fillColor: "#00ff00",   // Isi poligon Hijau Terang
+                                fillOpacity: 0.8 
+                            }
+                        });
+                        mangroveLayer.addLayer(mangroveBaru);
+                    }
                 })
-                .catch(error => console.log("Data spesifik belum ada untuk: " + desa));
+                .catch(error => {
+                    // Abaikan diam-diam jika data/file mangrove untuk desa ini memang tidak ada
+                });
         }
     });
 }
