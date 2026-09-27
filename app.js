@@ -97,14 +97,20 @@ function loadVisibleMangroves() {
         var desa = layer.feature.properties.WADMKD;
 
         // Jika poligon desa masuk ke dalam sorotan layar dan belum dimuat
-        if (desa && !loadedDesa.has(desa) && mapBounds.intersects(layer.getBounds())) {
-            loadedDesa.add(desa); // Catat agar tidak diunduh berulang saat layar digeser sedikit
+        if (desa && !loadedDesa.has(lokasiID) && mapBounds.intersects(layer.getBounds())) {
+            loadedDesa.add(lokasiID); 
 
-            // Panggil file mangrove murni berdasarkan nama desa
-            var pathMangrove = 'data/data_mangrove/' + desa + '.geojson';
+            // Pastikan format ini SAMA PERSIS dengan nama file dari ArcPy Anda
+            // Gunakan spasi sebelum dan sesudah tanda strip
+            var namaFile = desa + " – " + kec + " – " + kab + ".geojson"; 
             
+            // Encode agar spasi dan tanda baca aman untuk link URL
+            var pathMangrove = 'data/data_mangrove/' + encodeURIComponent(namaFile);
+            
+            console.log("🔍 Mencari mangrove: " + pathMangrove);
+
             fetch(pathMangrove)
-                .then(response => {
+            .then(response => {
                     // Jika file ada, ubah ke JSON. Jika tidak ada (desa tanpa mangrove), abaikan.
                     if(response.ok) return response.json();
                 })
