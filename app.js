@@ -5,23 +5,20 @@ var map = L.map('map', {
     maxZoom: 17
 }).setView([-7.7543, 113.2159], 10);
 
-// 2. Tiga Opsi Basemap Baru
+// 2. Tiga Opsi Basemap
 var esriTopo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles © Esri',
     maxZoom: 17
 });
-
 var esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles © Esri',
     maxZoom: 17
 });
-
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap',
     maxZoom: 17
 });
 
-// Set basemap default (Esri Topography)
 esriTopo.addTo(map);
 
 var baseMaps = {
@@ -31,8 +28,12 @@ var baseMaps = {
 };
 L.control.layers(baseMaps).addTo(map);
 
-// 3. Layer Kosong untuk Mangrove Desa
+// 3. Layer Kosong untuk Mangrove & Wilayah
 var mangroveLayer = L.layerGroup().addTo(map);
+var wilayahLayer; // Variabel global untuk menyimpan data batas desa
+
+// DAFTAR MEMORI: Menyimpan nama desa yang sudah di-load agar tidak dipanggil berulang kali
+var loadedDesa = new Set(); 
 
 // 4. Gradasi Warna
 function getColor(luas) {
@@ -43,39 +44,63 @@ function getColor(luas) {
            luas >= 25  ? '#74c476' :
            luas >= 10  ? '#a1d99b' :
            luas >  0   ? '#c7e9c0' : 
-                         '#ffffff';  // Putih untuk nilai 0
+                         '#ffffff';  
 }
 
-// 5. Style Poligon (Transparansi diatur berdasarkan luasan)
+// 5. Style Poligon Dinamis (Berubah berdasarkan level Zoom)
 function styleWilayah(feature) {
     var luas = feature.properties.Luas_Mangrove || 0;
-    return {
-        fillColor: getColor(luas),
-        weight: 0,
-        // Transparansi 60% (opacity 0.4) jika ada mangrove, Transparansi 100% (opacity 0) jika 0
-        fillOpacity: luas > 0 ? 0.4 : 0 
-    };
+    var currentZoom = map.getZoom();
+
+    if (currentZoom >= 14) {
+        // MODE ZOOM IN: Transparansi 100% (hilang), munculkan garis batas tipis
+        return {
+            fillColor: getColor(luas),
+            weight: 1,           // Garis batas muncul
+            color: '#999',       // Warna garis batas abu-abu
+            fillOpacity: 0       // Warna fill hilang
+        };
+    } else {
+        // MODE ZOOM OUT (Default Fase 1.1): Tidak ada batas, warna muncul (60%)
+        return {
+            fillColor: getColor(luas),
+            weight: 0,
+            fillOpacity: luas > 0 ? 0.4 : 0 
+        };
+    }
 }
 
-// 6. Interaksi Sorot & Klik Poligon
+// 6. Tooltip (Hanya memunculkan Info, fungsi Klik dihapus)
 function onEachFeature(feature, layer) {
     var luas = feature.properties.Luas_Mangrove || 0;
     var desa = feature.properties.WADMKD || "-";
     var kec = feature.properties.WADMKC || "-";
     var kab = feature.properties.WADMKK || "-";
 
-    // Format lokasi (Desa - Kecamatan - Kabupaten) dan 4 desimal
     var lokasi = desa + " - " + kec + " - " + kab;
     var luasFormat = luas.toFixed(4);
 
-    // Tooltip interaktif
     if (luas > 0) {
         layer.bindTooltip("<b>Lokasi: " + lokasi + "</b><br>Luas Mangrove: " + luasFormat + " Ha");
     }
+    // layer.on('click') dihapus karena sekarang otomatis!
+}
 
-    layer.on('click', function(e) {
-        mangroveLayer.clearLayers();
-        if (luas > 0) {
+// 7. FUNGSI RADAR: Mengecek poligon desa yang masuk layar & memanggil data mangrove
+function loadVisibleMangroves() {
+    // Jangan lakukan apa-apa jika belum cukup zoom
+    if (map.getZoom() < 14 || !wilayahLayer) return;
+
+    var mapBounds = map.getBounds(); // Ambil kotak koordinat layar saat ini
+
+    wilayahLayer.eachLayer(function(layer) {
+        var luas = layer.feature.properties.Luas_Mangrove || 0;
+        var desa = layer.feature.properties.WADMKD;
+
+        // Syarat: Ada mangrove, belum pernah diload, dan poligon bersinggungan dengan layar
+        if (luas > 0 && desa && !loadedDesa.has(desa) && mapBounds.intersects(layer.getBounds())) {
+            loadedDesa.add(desa); // Catat ke memori agar tidak diload dua kali
+
             var pathMangrove = 'data/data_mangrove/' + desa + '.geojson';
             fetch(pathMangrove)
                 .then(response => {
@@ -87,14 +112,39 @@ function onEachFeature(feature, layer) {
                         style: { color: "#ff0000", weight: 2, fillColor: "#ff0000", fillOpacity: 0.8 }
                     });
                     mangroveLayer.addLayer(mangroveBaru);
-                    map.fitBounds(mangroveBaru.getBounds());
                 })
                 .catch(error => console.log("Data spesifik belum ada untuk: " + desa));
         }
     });
 }
 
-// 7. Menambahkan Keterangan Indeks Warna (Legend)
+// 8. KONTROL INTERAKSI LAYAR (Zoom & Geser)
+map.on('zoomend', function() {
+    var currentZoom = map.getZoom();
+    
+    // Perbarui tampilan warna/garis desa setiap kali zoom selesai
+    if (wilayahLayer) {
+        wilayahLayer.setStyle(styleWilayah);
+    }
+
+    if (currentZoom >= 14) {
+        // Tembakkan radar untuk memanggil mangrove jika zoom 14+
+        loadVisibleMangroves();
+    } else {
+        // Jika di zoom out (<14), bersihkan peta dari warna merah dan reset memori!
+        mangroveLayer.clearLayers();
+        loadedDesa.clear();
+    }
+});
+
+map.on('moveend', function() {
+    // Tembakkan radar saat layar digeser, HANYA jika sedang di zoom 14+
+    if (map.getZoom() >= 14) {
+        loadVisibleMangroves();
+    }
+});
+
+// 9. Legenda (Tetap sama)
 var legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
@@ -114,29 +164,29 @@ legend.onAdd = function (map) {
             textDisplay = from + (to ? '&ndash;' + to : '+');
         }
 
-        // Tampilan khusus di legenda: jika 0, kotak warna transparan dengan garis batas
         var legendColor = getColor(from + 0.1);
         var legendOpacity = from === 0 ? '0' : '0.4';
         var legendBorder = from === 0 ? '1px dashed #999' : 'none';
 
-        labels.push(
-            '<i style="background:' + legendColor + '; opacity:' + legendOpacity + '; border:' + legendBorder + ';"></i> ' + textDisplay
-        );
+        labels.push('<i style="background:' + legendColor + '; opacity:' + legendOpacity + '; border:' + legendBorder + ';"></i> ' + textDisplay);
     }
     div.innerHTML = labels.join('<br>');
     return div;
 };
 legend.addTo(map);
 
-// 8. Memanggil Data GeoJSON Batas Wilayah
+// 10. Memanggil Data GeoJSON Batas Wilayah (Tetap sama)
 console.log("Memuat data wilayah...");
 fetch('data/Wilker_STBD_mangrove.geojson') 
     .then(response => response.json())
     .then(data => {
-        L.geoJSON(data, {
+        wilayahLayer = L.geoJSON(data, {
             style: styleWilayah,
             onEachFeature: onEachFeature
         }).addTo(map);
         console.log("Data berhasil dimuat!");
+        
+        // Cek darurat barangkali layar pengguna sudah di level 14 saat pertama buka
+        loadVisibleMangroves();
     })
     .catch(error => console.error("Gagal memuat GeoJSON:", error));
