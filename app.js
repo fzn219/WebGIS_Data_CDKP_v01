@@ -210,3 +210,26 @@ fetch('data/Wilker_STBD_mangrove.geojson')
         loadVisibleMangroves();
     })
     .catch(error => console.error("Gagal memuat GeoJSON:", error));
+
+// 11. Memanggil Data Mangrove Tambahan (Independen)
+console.log("Memuat data mangrove Jatim (Independen)...");
+fetch('data/data_mangrove/Mangrove_Wilker_Jatim.geojson')
+    .then(response => {
+        if(!response.ok) throw new Error("File Mangrove Independen tidak ditemukan");
+        return response.json();
+    })
+    .then(data => {
+        var mangroveJatim = L.geoJSON(data, {
+            style: { 
+                color: "#ffff00",       // Garis tepi kuning
+                weight: 2, 
+                fillColor: "#ffff00",   // Isi poligon kuning padat
+                fillOpacity: 1.0        // Transparansi 0 (100% solid)
+            }
+        });
+        
+        // Memasukkan data ke dalam grup layer atau peta utama
+        mangroveJatim.addTo(map);
+        console.log("✅ SUKSES memuat mangrove Jatim independen!");
+    })
+    .catch(error => console.error("❌ Gagal memuat mangrove Jatim:", error));
