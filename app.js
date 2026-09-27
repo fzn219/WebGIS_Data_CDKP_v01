@@ -86,55 +86,58 @@ function onEachFeature(feature, layer) {
     // layer.on('click') dihapus karena sekarang otomatis!
 }
 
-// 7. FUNGSI RADAR LAYAR: Memunculkan visual mangrove murni berdasarkan sorotan layar
+// 7. FUNGSI RADAR LAYAR: Memanggil data mangrove dengan format nama file yang benar
 function loadVisibleMangroves() {
-    // Jangan lakukan apa-apa jika zoom di bawah 14
     if (map.getZoom() < 14 || !wilayahLayer) return;
 
-    var mapBounds = map.getBounds(); // Ambil kotak koordinat layar saat ini
+    var mapBounds = map.getBounds(); 
 
     wilayahLayer.eachLayer(function(layer) {
         var desa = layer.feature.properties.WADMKD;
+        var kec = layer.feature.properties.WADMKC;
+        var kab = layer.feature.properties.WADMKK;
 
-        // Jika poligon desa masuk ke dalam sorotan layar dan belum dimuat
+        // 1. Variabel lokasiID HARUS dideklarasikan di sini sebelum digunakan
+        var lokasiID = desa + "_" + kec + "_" + kab;
+
+        // 2. Sekarang pengecekan lokasiID aman dilakukan
         if (desa && !loadedDesa.has(lokasiID) && mapBounds.intersects(layer.getBounds())) {
             loadedDesa.add(lokasiID); 
 
-            // Pastikan format ini SAMA PERSIS dengan nama file dari ArcPy Anda
-            // Gunakan spasi sebelum dan sesudah tanda strip
-            var namaFile = desa + " – " + kec + " – " + kab + ".geojson"; 
+            // 3. Susun nama file persis seperti format "Desa – Kec – Kab.geojson"
+            // Menggunakan tanda strip panjang (en-dash) sesuai output Python Anda
+            var namaFile = desa + " – " + kec + " – " + kab + ".geojson";
             
-            // Encode agar spasi dan tanda baca aman untuk link URL
+            // Encode URI Component digunakan agar spasi terbaca sebagai %20 di URL
             var pathMangrove = 'data/data_mangrove/' + encodeURIComponent(namaFile);
             
-            console.log("🔍 Mencari mangrove: " + pathMangrove);
+            console.log("🔍 Mencari mangrove: " + namaFile);
 
             fetch(pathMangrove)
-            .then(response => {
-                    // Jika file ada, ubah ke JSON. Jika tidak ada (desa tanpa mangrove), abaikan.
+                .then(response => {
                     if(response.ok) return response.json();
+                    else throw new Error("File tidak ditemukan");
                 })
                 .then(data => {
                     if(data) {
-                        // Tampilkan murni sebagai visual Hijau Terang
+                        console.log("✅ SUKSES memuat: " + namaFile);
                         var mangroveBaru = L.geoJSON(data, {
                             style: { 
-                                color: "#00ff00",       // Garis batas Hijau Terang
-                                weight: 1.5, 
-                                fillColor: "#00ff00",   // Isi poligon Hijau Terang
-                                fillOpacity: 0.8 
+                                color: "#00ff00",       // Outline Hijau Terang
+                                weight: 2, 
+                                fillColor: "#00ff00",   // Isi Poligon Hijau Terang
+                                fillOpacity: 1.0        // 100% SOLID, TIDAK TRANSPARAN
                             }
                         });
                         mangroveLayer.addLayer(mangroveBaru);
                     }
                 })
                 .catch(error => {
-                    // Abaikan diam-diam jika data/file mangrove untuk desa ini memang tidak ada
+                    // Abaikan diam-diam jika file memang tidak ada untuk desa ini
                 });
         }
     });
 }
-
 // 8. KONTROL INTERAKSI LAYAR (Zoom & Geser)
 map.on('zoomend', function() {
     var currentZoom = map.getZoom();
